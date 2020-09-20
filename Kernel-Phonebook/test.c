@@ -4,7 +4,7 @@
 #include <unistd.h>
 int main(int argc, char *argv[])
 {
-         long int amma = syscall(548);
+         long int amma = syscall(335);
          printf("System call sys_hello returned %ld\n", amma);
          sleep(999999);
          return 0;
