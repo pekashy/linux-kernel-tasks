@@ -24,7 +24,7 @@ void test_adduser()
 		"Doe",
 		23,
 		"johndoe@pp.cc",
-		"11-22-33-44"
+		"11-22-33-44",
 	};
 	assert(!syscall(SYSCALL_ADDUSER, "John", "Doe", 23, "johndoe@pp.cc", "11-22-33-44"));
 	printf("Test <Add User> Passed!\n");
