@@ -1,10 +1,9 @@
 CC=gcc
-CFLAGS=-I.
+CFLAGS=-I. -static
 DEPS = test.h
 OBJ = test.o
 
-%.o: %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+all:
 
 test: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
