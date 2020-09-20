@@ -1293,6 +1293,7 @@ static inline unsigned int ksys_personality(unsigned int personality)
 	return old;
 }
 
-asmlinkage long sys_hello(void);
+asmlinkage long __x64_sys_hello(void);
+asmlinkage long sys_user_add(const char*, const char*, int, const char*, const char*);
 
 #endif

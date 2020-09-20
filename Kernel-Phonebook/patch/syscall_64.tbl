@@ -343,7 +343,8 @@
 332	common	statx			__x64_sys_statx
 333	common	io_pgetevents		__x64_sys_io_pgetevents
 334	common	rseq			__x64_sys_rseq
-335	64  	hello			sys_hello
+335	common  hello			__x64_sys_hello
+336 common  user_add        __x64_sys_user_add
 
 #
 # x32-specific system call numbers start at 512 to avoid cache impact

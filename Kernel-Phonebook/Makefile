@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-I. -static
-DEPS = test.h
+DEPS = inc/user.h
 OBJ = test.o
 
 all:
