@@ -6,8 +6,8 @@
 
 typedef struct _dbEntry
 {
-    USER* pUser;
-    struct list_head list;
+	USER* pUser;
+	struct list_head list;
 } DBENTRY;
 
 int AddUser(USER* pUser);

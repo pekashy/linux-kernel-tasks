@@ -5,8 +5,8 @@
 
 SYSCALL_DEFINE1(user_add, const USER*, pPassedUser)
 {
-    USER* pNewUser = KCloneUser(pPassedUser);
-    printk("Add user:\n First Name: %s\n Last Name: %s\n: Age: %d\n Email: %s\n, Phone: %s\n", 
-        pNewUser->firstName, pNewUser->lastName, pNewUser->age, pNewUser->email, pNewUser->phone);
-    return AddUser(pNewUser);
+	USER* pNewUser = KCloneUser(pPassedUser);
+	printk("Add user:\n First Name: %s\n Last Name: %s\n: Age: %d\n Email: %s\n, Phone: %s\n", 
+		pNewUser->firstName, pNewUser->lastName, pNewUser->age, pNewUser->email, pNewUser->phone);
+	return AddUser(pNewUser);
 }
