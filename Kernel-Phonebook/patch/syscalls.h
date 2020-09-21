@@ -84,6 +84,8 @@ union bpf_attr;
 #include <linux/personality.h>
 #include <trace/syscall.h>
 
+#include "../../../../common/user.h"
+
 #ifdef CONFIG_ARCH_HAS_SYSCALL_WRAPPER
 /*
  * It may be useful for an architecture to override the definitions of the
@@ -1295,5 +1297,6 @@ static inline unsigned int ksys_personality(unsigned int personality)
 
 asmlinkage long __x64_sys_hello(void);
 asmlinkage long sys_user_add(const char*, const char*, int, const char*, const char*);
+asmlinkage long sys_user_get(const char*, USER*);
 
 #endif

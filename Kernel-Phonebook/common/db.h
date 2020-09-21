@@ -10,6 +10,5 @@ typedef struct _dbEntry
     struct list_head list;
 } DBENTRY;
 
-extern DBENTRY* gDBRoot;
-
 int AddUser(USER* pUser);
+USER* GetUser(const char* surname);

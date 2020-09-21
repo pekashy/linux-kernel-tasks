@@ -345,6 +345,7 @@
 334	common	rseq			__x64_sys_rseq
 335	common  hello			__x64_sys_hello
 336 common  user_add        __x64_sys_user_add
+337 common  user_get        __x64_sys_user_get
 
 #
 # x32-specific system call numbers start at 512 to avoid cache impact
