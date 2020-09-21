@@ -11,6 +11,7 @@
 #define SYSCALL_HELLOWORLD 335
 #define SYSCALL_ADDUSER 336
 #define SYSCALL_GETUSER 337
+#define SYSCALL_DELUSER 338
 
 void test_helloworld()
 {
@@ -70,7 +71,33 @@ void test_checkuser()
 
 	printf("Test <Add and Get User> Passed!\n");
 
+	sleep(5);
+}
 
+int test_delete()
+{
+	USER checkuser = *AllocUser();
+
+	strcpy(checkuser.firstName, "John");   
+	strcpy(checkuser.lastName, "DelDoe");   
+	strcpy(checkuser.email, "johndeldoe@pp.cc");   
+	strcpy(checkuser.phone, "11-22-33-44");   
+	checkuser.age = 23;
+
+	assert(syscall(SYSCALL_DELUSER, "DelDoe"));
+	sleep(2);
+	assert(syscall(SYSCALL_GETUSER, "DelDoe", &checkuser));
+	sleep(2);
+	assert(!syscall(SYSCALL_ADDUSER, &checkuser));
+	sleep(2);
+	assert(!syscall(SYSCALL_GETUSER, "DelDoe", &checkuser));
+	sleep(2);
+	assert(!syscall(SYSCALL_DELUSER, "DelDoe"));
+	sleep(2);
+	assert(syscall(SYSCALL_GETUSER, "DelDoe", &checkuser));
+	sleep(2);
+
+	printf("Test <Delete and Check User> Passed!\n");
 	sleep(5);
 }
 
@@ -79,6 +106,7 @@ int test()
 	test_helloworld();
 	test_adduser();
 	test_checkuser();
+	test_delete();
 	printf("Tests Passed!\n");
 	sleep(30);
 }

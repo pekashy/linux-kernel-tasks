@@ -46,7 +46,7 @@ int DeleteUser(const char* surname)
 {
 	if(!DBRoot)
 	{
-		return NULL;
+		return 1;
 	}
 
 	struct list_head* position = GetEntry(surname);
