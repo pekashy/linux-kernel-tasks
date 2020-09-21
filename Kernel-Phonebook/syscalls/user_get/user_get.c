@@ -1,7 +1,7 @@
 #include <linux/kernel.h>
 #include <linux/syscalls.h>
-#include "../../common/user.h"
-#include "../../common/db.h"
+#include "../kernel_common/userK.h"
+#include "../kernel_common/db.h"
 
 
 SYSCALL_DEFINE2(user_get, const char*, surname, USER*, pOutputData)
@@ -15,11 +15,7 @@ SYSCALL_DEFINE2(user_get, const char*, surname, USER*, pOutputData)
 
 	if(foundUser != NULL)
 	{
-		strcpy(pOutputData->firstName, foundUser->firstName);   
-		strcpy(pOutputData->lastName, foundUser->lastName);   
-		strcpy(pOutputData->email, foundUser->email);   
-		strcpy(pOutputData->phone, foundUser->phone);   
-		pOutputData->age = foundUser->age;
+		KCopyUser(pOutputData, foundUser);
 
 		printk("Get user:\n First Name: %s\n Last Name: %s\n: Age: %d\n Email: %s\n, Phone: %s\n", 
 			pOutputData->firstName, pOutputData->lastName, pOutputData->age, pOutputData->email, pOutputData->phone);

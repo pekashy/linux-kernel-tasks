@@ -1,7 +1,6 @@
 CC=gcc
 CFLAGS=-I. -static
-DEPS = inc/user.h
-OBJ = test.o
+OBJ = test.o userUtils.o
 
 all:
 

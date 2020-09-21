@@ -6,24 +6,11 @@
 #include <string.h> 
 #include "common/user.h"
 #include <stdlib.h>
+#include "userUtils.h"
 
 #define SYSCALL_HELLOWORLD 335
 #define SYSCALL_ADDUSER 336
 #define SYSCALL_GETUSER 337
-
-USER AllocUser()
-{
-	USER checkuser;
-	checkuser.email = calloc(1024, sizeof(char));
-	checkuser.firstName = calloc(1024, sizeof(char));
-	checkuser.lastName = calloc(1024, sizeof(char));
-	checkuser.phone = calloc(1024, sizeof(char));
-	memset(checkuser.firstName, 0, 1024*sizeof(char));
-	memset(checkuser.email, 0, 1024*sizeof(char));
-	memset(checkuser.lastName, 0, 1024*sizeof(char));
-	memset(checkuser.phone, 0, 1024*sizeof(char));
-	return checkuser;
-}
 
 void test_helloworld()
 {
@@ -42,21 +29,32 @@ void test_adduser()
 		"johndoe@pp.cc",
 		"11-22-33-44",
 	};
-	assert(!syscall(SYSCALL_ADDUSER, "John", "Doe", 23, "johndoe@pp.cc", "11-22-33-44"));
+	assert(!syscall(SYSCALL_ADDUSER, &testuser));
 	printf("Test <Add User> Passed!\n");
 	sleep(5);
 }
 
 void test_checkuser()
 {
-	USER checkuser = AllocUser();
+	USER checkuser = *AllocUser();
 
-	assert(!syscall(SYSCALL_ADDUSER, "John", "Doe", 23, "johndoe@pp.cc", "11-22-33-44"));
+	strcpy(checkuser.firstName, "John");   
+	strcpy(checkuser.lastName, "Doe");   
+	strcpy(checkuser.email, "johndoe@pp.cc");   
+	strcpy(checkuser.phone, "11-22-33-44");   
+	checkuser.age = 23;
+
+	assert(!syscall(SYSCALL_ADDUSER, &checkuser));
 	long res = syscall(SYSCALL_GETUSER, "Doe", &checkuser);
+	printf("%s %li!\n", checkuser.firstName, res);
 	assert(!strcmp(checkuser.lastName, "Doe"));
 
-	assert(!syscall(SYSCALL_ADDUSER, "John", "Wick", 43, "babayaga@pp.cc", "11-22-33-44"));
+	strcpy(checkuser.lastName, "Wick");   
+	strcpy(checkuser.email, "babayaga@pp.cc");   
+	checkuser.age = 43;
+	assert(!syscall(SYSCALL_ADDUSER, &checkuser));
 	res = syscall(SYSCALL_GETUSER, "Wick", &checkuser);
+
 	assert(!strcmp(checkuser.lastName, "Wick"));
 	assert(!strcmp(checkuser.firstName, "John"));
 	assert(checkuser.age == 43);

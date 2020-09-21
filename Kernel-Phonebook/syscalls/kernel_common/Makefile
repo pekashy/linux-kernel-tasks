@@ -1,0 +1,1 @@
+obj-y := userK.o db.o

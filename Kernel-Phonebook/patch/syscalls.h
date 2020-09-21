@@ -1296,7 +1296,7 @@ static inline unsigned int ksys_personality(unsigned int personality)
 }
 
 asmlinkage long __x64_sys_hello(void);
-asmlinkage long sys_user_add(const char*, const char*, int, const char*, const char*);
+asmlinkage long sys_user_add(const char*, const USER*);
 asmlinkage long sys_user_get(const char*, USER*);
 
 #endif

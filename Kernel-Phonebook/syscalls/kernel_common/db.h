@@ -2,7 +2,7 @@
 
 #include <linux/list.h>
 
-#include "user.h"
+#include "../../common/user.h"
 
 typedef struct _dbEntry
 {
@@ -12,3 +12,4 @@ typedef struct _dbEntry
 
 int AddUser(USER* pUser);
 USER* GetUser(const char* surname);
+int DeleteUser(const char* surname);

@@ -1,1 +1,1 @@
-obj-y := user.o db.o
+obj-y := user.o
