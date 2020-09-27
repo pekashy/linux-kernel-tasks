@@ -15,9 +15,9 @@
 
 void test_helloworld()
 {
+	printf("Test <Hello World> Started!\n");
 	assert(!syscall(SYSCALL_HELLOWORLD));
 	printf("Test <Hello World> Passed!\n");
-	sleep(5);
 }
 
 void test_adduser()
@@ -32,7 +32,7 @@ void test_adduser()
 	};
 	assert(!syscall(SYSCALL_ADDUSER, &testuser));
 	printf("Test <Add User> Passed!\n");
-	sleep(5);
+	sleep(1);
 }
 
 void test_checkuser()
@@ -71,7 +71,7 @@ void test_checkuser()
 
 	printf("Test <Add and Get User> Passed!\n");
 
-	sleep(5);
+	sleep(1);
 }
 
 int test_delete()
@@ -85,20 +85,20 @@ int test_delete()
 	checkuser.age = 23;
 
 	assert(syscall(SYSCALL_DELUSER, "DelDoe"));
-	sleep(2);
+	sleep(1);
 	assert(syscall(SYSCALL_GETUSER, "DelDoe", &checkuser));
-	sleep(2);
+	sleep(1);
 	assert(!syscall(SYSCALL_ADDUSER, &checkuser));
-	sleep(2);
+	sleep(1);
 	assert(!syscall(SYSCALL_GETUSER, "DelDoe", &checkuser));
-	sleep(2);
+	sleep(1);
 	assert(!syscall(SYSCALL_DELUSER, "DelDoe"));
-	sleep(2);
+	sleep(1);
 	assert(syscall(SYSCALL_GETUSER, "DelDoe", &checkuser));
-	sleep(2);
+	sleep(1);
 
 	printf("Test <Delete and Check User> Passed!\n");
-	sleep(5);
+	sleep(1);
 }
 
 int test()
@@ -108,7 +108,7 @@ int test()
 	test_checkuser();
 	test_delete();
 	printf("Tests Passed!\n");
-	sleep(30);
+	sleep(1);
 }
 
 int main(int argc, char *argv[])
