@@ -7,4 +7,4 @@ typedef struct _user
 	int age;
 	char* email;
 	char* phone;
-} USER;
+} BDUSER;

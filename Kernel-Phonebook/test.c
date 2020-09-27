@@ -22,7 +22,7 @@ void test_helloworld()
 
 void test_adduser()
 {
-	USER testuser =
+	BDUSER testuser =
 	{
 		"John",
 		"Doe",
@@ -37,7 +37,7 @@ void test_adduser()
 
 void test_checkuser()
 {
-	USER checkuser = *AllocUser();
+	BDUSER checkuser = *AllocUser();
 
 	strcpy(checkuser.firstName, "John");   
 	strcpy(checkuser.lastName, "Doe");   
@@ -76,7 +76,7 @@ void test_checkuser()
 
 int test_delete()
 {
-	USER checkuser = *AllocUser();
+	BDUSER checkuser = *AllocUser();
 
 	strcpy(checkuser.firstName, "John");   
 	strcpy(checkuser.lastName, "DelDoe");   

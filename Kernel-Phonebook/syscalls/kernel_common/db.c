@@ -60,7 +60,7 @@ int DeleteUser(const char* surname)
 	return 1;
 }
 
-USER* GetUser(const char* surname)
+BDUSER* GetUser(const char* surname)
 {
 	if(DBRoot == NULL)
 	{
@@ -79,7 +79,7 @@ USER* GetUser(const char* surname)
 }
 
 
-int AddUser(USER* pUser)
+int AddUser(BDUSER* pUser)
 {
 	if(pUser == NULL)
 	{

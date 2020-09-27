@@ -1,9 +1,9 @@
 #include "common/user.h"
 
-USER* CreateUser(const char* firstName, const char* lastName, int age, const char* email, const char* phone);
+BDUSER* CreateUser(const char* firstName, const char* lastName, int age, const char* email, const char* phone);
 
-USER* AllocUser(void);
+BDUSER* AllocUser(void);
 
-void FreeUser(USER* pUser);
+void FreeUser(BDUSER* pUser);
 
-void CopyUser(USER* dest, USER* src);
+void CopyUser(BDUSER* dest, BDUSER* src);

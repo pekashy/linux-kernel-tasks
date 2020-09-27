@@ -1,0 +1,8 @@
+#!/bin/bash
+insmod addressbook.ko
+cd dev
+mknod addressbook c 250 0
+cd ..
+#cat dev/addressbook
+./test_loadable
+rmmod addressbook

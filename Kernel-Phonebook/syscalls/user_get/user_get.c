@@ -4,14 +4,14 @@
 #include "../kernel_common/db.h"
 
 
-SYSCALL_DEFINE2(user_get, const char*, surname, USER*, pOutputData)
+SYSCALL_DEFINE2(user_get, const char*, surname, BDUSER*, pOutputData)
 {
 	if(pOutputData == NULL)
 	{
 		return 1;
 	}
 
-	USER* foundUser = GetUser(surname);
+	BDUSER* foundUser = GetUser(surname);
 
 	if(foundUser != NULL)
 	{

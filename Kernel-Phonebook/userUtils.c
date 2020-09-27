@@ -3,9 +3,9 @@
 #include <stdlib.h>
 
 // Deprecated
-USER* CreateUser(const char* firstName, const char* lastName, int age, const char* email, const char* phone)
+BDUSER* CreateUser(const char* firstName, const char* lastName, int age, const char* email, const char* phone)
 {
-	USER* pNewUser = malloc(sizeof(USER));
+	BDUSER* pNewUser = malloc(sizeof(BDUSER));
 	pNewUser->firstName = firstName;
 	pNewUser->lastName = lastName;
 	pNewUser->age = age;
@@ -14,9 +14,9 @@ USER* CreateUser(const char* firstName, const char* lastName, int age, const cha
 	return pNewUser;
 }
 
-USER* AllocUser(void)
+BDUSER* AllocUser(void)
 {
-	USER* pNewUser = (USER*) malloc(sizeof(USER));
+	BDUSER* pNewUser = (BDUSER*) malloc(sizeof(BDUSER));
 	pNewUser->email = calloc(1024, sizeof(char));
 	pNewUser->firstName = calloc(1024, sizeof(char));
 	pNewUser->lastName = calloc(1024, sizeof(char));

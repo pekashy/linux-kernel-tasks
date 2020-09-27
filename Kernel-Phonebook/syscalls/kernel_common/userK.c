@@ -1,7 +1,7 @@
 #include "userK.h"
 #include <linux/slab.h>
 
-void KFreeUser(USER* pUser)
+void KFreeUser(BDUSER* pUser)
 {
 	kzfree(pUser->email);
 	kzfree(pUser->firstName);
@@ -11,9 +11,9 @@ void KFreeUser(USER* pUser)
 	pUser = NULL;
 }
 
-USER* KCloneUser(USER* pUser)
+BDUSER* KCloneUser(BDUSER* pUser)
 {
-	USER* pNewUser = kmalloc(sizeof(USER), GFP_KERNEL);
+	BDUSER* pNewUser = kmalloc(sizeof(BDUSER), GFP_KERNEL);
 	pNewUser = kmalloc(sizeof(char)*1024, GFP_KERNEL);
 	pNewUser->email = kmalloc(sizeof(char)*1024, GFP_KERNEL);
 	pNewUser->firstName = kmalloc(sizeof(char)*1024, GFP_KERNEL);
@@ -27,7 +27,7 @@ USER* KCloneUser(USER* pUser)
 	return pNewUser;
 }
 
-void KCopyUser(USER* dest, USER* src)
+void KCopyUser(BDUSER* dest, BDUSER* src)
 {
 	strcpy(dest->firstName, src->firstName);   
 	strcpy(dest->lastName, src->lastName);   

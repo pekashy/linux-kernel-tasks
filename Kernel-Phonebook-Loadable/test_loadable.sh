@@ -9,11 +9,11 @@ cd ..
 make test_loadable
 chmod +x test_loadable
 cp test_loadable initrd/
-cd loadable 
+cd kernel 
 make
 cd ..
-cp loadable/testmodule.ko initrd/
-cp tli.sh initrd/
+cp kernel/addressbook.ko initrd/
+cp t initrd/
 cd initrd
 find . | cpio -o -H newc | gzip > ../test_fs.cpio.gz
 cd ..

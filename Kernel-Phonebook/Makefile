@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I. -static
+CFLAGS=-I../syscalls/kernel_common/ -static
 OBJ = test.o userUtils.o
 OBJ_L = test_loadable.o userUtils.o
 

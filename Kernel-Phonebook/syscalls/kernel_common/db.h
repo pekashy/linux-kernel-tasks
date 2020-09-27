@@ -6,10 +6,10 @@
 
 typedef struct _dbEntry
 {
-	USER* pUser;
+	BDUSER* pUser;
 	struct list_head list;
 } DBENTRY;
 
-int AddUser(USER* pUser);
-USER* GetUser(const char* surname);
+int AddUser(BDUSER* pUser);
+BDUSER* GetUser(const char* surname);
 int DeleteUser(const char* surname);
