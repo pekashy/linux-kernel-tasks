@@ -254,7 +254,20 @@ int ProcessGet(const char* pBuffer)
 
 int ProcessDelete(const char* pBuffer)
 {
-	return 0;
+	printk(KERN_INFO "Processing querying of: '%s'\n", pBuffer);
+	char* safeString = kzalloc(strlen(pBuffer), GFP_KERNEL);
+	strcpy(safeString, pBuffer);
+	char *token = strsep(&safeString, " "); // ID of operation
+	printk(KERN_INFO "Op ID : '%s'\n", token);
+   	const char* rLastName = strsep(&safeString, " ");
+	if(rLastName == NULL)
+	{
+		kzfree(safeString);
+		return -2;
+	}
+	printk(KERN_INFO ": '%s'\n", rLastName);
+
+	return DeleteUser(rLastName);
 }
 
 static struct file_operations fops = {

@@ -58,11 +58,6 @@ void testAdd()
     close(fd);
 }
 
-void testDelete()
-{
-
-}
-
 void testGet()
 {
     int fd = open("/dev/addressbook", O_RDWR | O_NONBLOCK);
@@ -84,29 +79,62 @@ void testGet()
 	assert(wr == strlen(buffer2));
     
     //Now ready to read user
-    close(fd);
-    fd = open("/dev/addressbook", O_RDONLY | O_NONBLOCK);
-    if(fd < 0)
-    {
-		printf("Opening device for write failed: %d\n", fd);
-        assert(0);
-    }
 	char* buffer4 = malloc(4096);
 	int rd = read(fd, buffer4, 4096);
 	buffer4[rd] = 0;
 	assert(rd);
     assert(!strcmp(buffer4, "John Wick2 38 babayaga@bb.cc 11-22-33"));
     free(buffer4);
-    close(rd);
+    close(fd);
     printf("Test <Add-Get User> succeeded!\n");
+}
+
+void testDelete()
+{
+    int fd = open("/dev/addressbook", O_RDWR | O_NONBLOCK);
+    if(fd < 0)
+    {
+		printf("Opening device for write failed: %d\n", fd);
+        assert(0);
+    }
+    char* buffer = "1 John Wick3 40 babayaga@bb.cc 11-22-33";
+    int wr = write(fd, buffer, strlen(buffer));
+	assert(wr == strlen(buffer));
+
+    char* buffer3 = "2 Wick3";
+    wr = write(fd, buffer3, strlen(buffer3));
+	assert(wr == strlen(buffer3));
+
+    char* buffer4 = malloc(4096);
+	int rd = read(fd, buffer4, 4096);
+	buffer4[rd] = 0;
+	assert(rd);
+    assert(!strcmp(buffer4, "John Wick3 40 babayaga@bb.cc 11-22-33"));
+    free(buffer4);
+
+    char* buffer5 = "3 Wick4";
+    wr = write(fd, buffer5, strlen(buffer5));
+	assert(wr != strlen(buffer5));
+
+    char* buffer6 = "3 Wick3";
+    wr = write(fd, buffer6, strlen(buffer6));
+	assert(wr == strlen(buffer6));
+
+    //Not found
+    char* buffer7 = "2 Wick3";
+    wr = write(fd, buffer7, strlen(buffer7));
+	assert(wr != strlen(buffer7));
+
+    printf("Test <Delete User> succeeded!\n");
+    close(fd);
 }
 
 void test()
 {
-    //test_read();
-	//test_write();
     testAdd();
     testGet();
+    testDelete();
+    printf("Tests passed!\n");
 }
 
 
